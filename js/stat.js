@@ -29,7 +29,7 @@ window.renderStatistics = function (ctx, names, times) {
   var step = histogramHeight / (max - 0);
 
   ctx.fillText('Худшее время: ' + Math.floor(max) + 'мс у игрока ' +
-    names[maxIndex], 170, 80);
+    names[maxIndex], 170, 70);
 
   var barHeight = 50;  //px Ширина одной полоски
   var indent = 110;    //px Отступ между полосками
@@ -42,10 +42,16 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
     }
-    ctx.fillRect(initialX + indent * i,                  //x
-      histogramHeight - times[i] * step + initialY,      //y
-        barHeight,                                       //width
-          times[i] * step);                              //height
+    ctx.fillRect(initialX + indent * i,                      //x
+      histogramHeight - times[i] * step + initialY,          //y
+        barHeight,                                           //width
+          times[i] * step);                                  //height
+
+
+    ctx.fillStyle = 'Black';
+    ctx.fillText(Math.round(times[i]),                       //text
+      (initialX + indent * i) + 5,                           //x
+        (histogramHeight - times[i] * step + initialY) - 5); //y
 
     ctx.fillStyle = 'Black';
     ctx.fillText(names[i], initialX + indent * i + 5,
